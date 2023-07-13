@@ -146,7 +146,7 @@ public class IntegerListImpl implements IntegerList {
         return Arrays.copyOf(storage,size);
     }
     @Override
-    public void sort(int[] arr) {
+    public void sort(Integer[] arr) {
             for (int i = 1; i < arr.length; i++) {
                 int temp = arr[i];
                 int j = i;

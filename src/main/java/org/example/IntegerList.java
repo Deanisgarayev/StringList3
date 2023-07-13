@@ -30,7 +30,7 @@ public interface IntegerList {
 
     Integer[] toArray();
 
-    void sort(int[] arr);
+    void sort(Integer[] arr);
 
     boolean binaryResearch(Integer[] arr, Integer item);
 }
