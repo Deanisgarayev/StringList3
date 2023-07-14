@@ -28,13 +28,13 @@ public class StringListTest {
 
 @Test
     public void validateSizeTest() {
-//       (size == storage.length)
+
             assertThrows(StorageIsFullException.class,
                     ()-> out.add(1,"hey"));
     }
 @Test
     public void ShouldThrowExceptionWhenVaIndexIsNull(int index) {
-//         (index < 0 || size > index)
+
     out.add(0, "hey");
             assertThrows(InvalidIndexException.class,
                     () -> out.get(1));
