@@ -13,6 +13,7 @@ import java.util.Arrays;
 public class IntegerListImpl implements IntegerList {
     private final Integer[] storage;
     private int size;
+
     public IntegerListImpl() {
         storage = new Integer[10];
     }
@@ -38,6 +39,7 @@ public class IntegerListImpl implements IntegerList {
             throw new InvalidIndexException();
         }
     }
+
     @Override
     public Integer add(Integer item) {
         validateSize();
@@ -54,7 +56,7 @@ public class IntegerListImpl implements IntegerList {
         if (index == size) {
             storage[size++] = item;
         }
-        System.arraycopy(storage, index, storage, index + 1, size-index);
+        System.arraycopy(storage, index, storage, index + 1, size - index);
         storage[index] = item;
         size++;
         return item;
@@ -71,7 +73,8 @@ public class IntegerListImpl implements IntegerList {
     @Override
     public Integer remove(Integer item) {
         validateItem(item);
-        int index = indexOF(item);;
+        int index = indexOF(item);
+        ;
         return remove(index);
     }
 
@@ -143,21 +146,23 @@ public class IntegerListImpl implements IntegerList {
 
     @Override
     public Integer[] toArray() {
-        return Arrays.copyOf(storage,size);
+        return Arrays.copyOf(storage, size);
     }
+
     @Override
     public void sort(Integer[] arr) {
-            for (int i = 1; i < arr.length; i++) {
-                int temp = arr[i];
-                int j = i;
-                while (j > 0 && arr[j - 1] >= temp) {
-                    arr[j] = arr[j - 1];
-                    j--;
-                }
-                arr[j] = temp;
+        for (int i = 1; i < arr.length; i++) {
+            int temp = arr[i];
+            int j = i;
+            while (j > 0 && arr[j - 1] >= temp) {
+                arr[j] = arr[j - 1];
+                j--;
             }
+            arr[j] = temp;
         }
-@Override
+    }
+
+    @Override
     public boolean binaryResearch(Integer[] arr, Integer item) {
         int min = 0;
         int max = arr.length - 1;
@@ -177,6 +182,11 @@ public class IntegerListImpl implements IntegerList {
         }
         return false;
     }
+
+    public void checkSpeedOfSortingThings(Integer[] arr) {
+        long start = System.currentTimeMillis();
+        sort(arr);
+        System.out.println(System.currentTimeMillis() - start);
     }
 
-
+}

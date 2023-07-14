@@ -33,4 +33,6 @@ public interface IntegerList {
     void sort(Integer[] arr);
 
     boolean binaryResearch(Integer[] arr, Integer item);
+
+    void checkSpeedOfSortingThings(Integer[] arr);
 }
