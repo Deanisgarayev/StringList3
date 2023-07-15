@@ -30,9 +30,9 @@ public interface IntegerList {
 
     Integer[] toArray();
 
-    void sort(Integer[] arr);
+//    Integer[] sort(Integer[] arr);
+//
+//    boolean binaryResearch(Integer[] arr, Integer item);
 
-    boolean binaryResearch(Integer[] arr, Integer item);
-
-    void checkSpeedOfSortingThings(Integer[] arr);
+//    void checkSpeedOfSortingThings(Integer[] arr);
 }

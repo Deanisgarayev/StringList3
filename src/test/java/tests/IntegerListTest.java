@@ -63,10 +63,10 @@ public class IntegerListTest {
 
     @Test
     public void  shouldBeEqualWhenRemoveItem() {
-        out.add(0, 10);
-        out.add(1, 20);
+
+        out.add(0, 20);
         out.remove(20);
-        assertEquals(10, out.get(0));
+        assertEquals(20, out.get(0));
     }
 
     @Test

@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.Arrays;
-
 @Service
+
 public class IntegerListImpl implements IntegerList {
     private final Integer[] storage;
     private int size;
@@ -74,7 +74,7 @@ public class IntegerListImpl implements IntegerList {
     public Integer remove(Integer item) {
         validateItem(item);
         int index = indexOF(item);
-        ;
+
         return remove(index);
     }
 
@@ -92,7 +92,7 @@ public class IntegerListImpl implements IntegerList {
     @Override
     public boolean contains(Integer item) {
         Integer[] storageCopy = toArray();
-        sort(storageCopy);
+        sortSelection(storageCopy);
         return binaryResearch(storageCopy, item);
     }
 
@@ -149,21 +149,26 @@ public class IntegerListImpl implements IntegerList {
         return Arrays.copyOf(storage, size);
     }
 
-    @Override
-    public void sort(Integer[] arr) {
-        for (int i = 1; i < arr.length; i++) {
-            int temp = arr[i];
-            int j = i;
-            while (j > 0 && arr[j - 1] >= temp) {
-                arr[j] = arr[j - 1];
-                j--;
+    private  void swapElements(Integer[] arr, int indexA, int indexB) {
+        int tmp = arr[indexA];
+        arr[indexA] = arr[indexB];
+        arr[indexB] = tmp;
+    }
+    private void sortSelection(Integer[] arr) {
+//  the fastest is sortSelection 2198 middle is sortInsertion  2770
+//  and the slowest is sortInsertion 7791
+        for (int i = 0; i < arr.length - 1; i++) {
+            int minElementIndex = i;
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[j] < arr[minElementIndex]) {
+                    minElementIndex = j;
+                }
             }
-            arr[j] = temp;
+            swapElements(arr, i, minElementIndex);
         }
     }
 
-    @Override
-    public boolean binaryResearch(Integer[] arr, Integer item) {
+    private boolean binaryResearch(Integer[] arr, Integer item) {
         int min = 0;
         int max = arr.length - 1;
 
@@ -182,11 +187,4 @@ public class IntegerListImpl implements IntegerList {
         }
         return false;
     }
-
-    public void checkSpeedOfSortingThings(Integer[] arr) {
-        long start = System.currentTimeMillis();
-        sort(arr);
-        System.out.println(System.currentTimeMillis() - start);
-    }
-
 }
