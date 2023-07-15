@@ -23,15 +23,16 @@ public class IntegerListTest {
     @Test
     public void ShouldThrowExceptionWhenVaItemIsNull() {
         assertThrows(NullItemException.class,
-                ()-> out.add(null));
+                () -> out.add(null));
     }
 
     @Test
     public void validateSizeTest() {
 
         assertThrows(StorageIsFullException.class,
-                ()-> out.add(1,10));
+                () -> out.add(1, 10));
     }
+
     @Test
     public void ShouldThrowExceptionWhenVaIndexIsNull(int index) {
 
@@ -51,10 +52,11 @@ public class IntegerListTest {
 
     @Test
     public void shouldBeEqualWhenAddItemAndIndex() {
-        out.add(0,10);
+        out.add(0, 10);
         assertEquals(10, out.get(0));
 
     }
+
     @Test
     public void shouldBeEqualWhenSetItemAndIndex() {
         out.set(0, 10);
@@ -62,15 +64,14 @@ public class IntegerListTest {
     }
 
     @Test
-    public void  shouldBeEqualWhenRemoveItem() {
-
+    public void shouldBeEqualWhenRemoveItem() {
         out.add(0, 20);
         out.remove(20);
         assertEquals(20, out.get(0));
     }
 
     @Test
-    public void  shouldBeEqualWhenRemoveIndex() {
+    public void shouldBeEqualWhenRemoveIndex() {
         out.add(10);
         out.add(20);
         out.remove(1);
@@ -78,26 +79,26 @@ public class IntegerListTest {
     }
 
     @Test
-    public void  shouldBeEqualWhenContainsItem() {
+    public void shouldBeEqualWhenContainsItem() {
         out.add(10);
         out.add(20);
-        assertTrue( out.contains(10));
+        assertTrue(out.contains(10));
     }
 
     @Test
     public void shouldBeEqualWhenIndexOFItem() {
-        assertEquals(-1,out.indexOF(10));
+        assertEquals(-1, out.indexOF(10));
     }
 
     @Test
-    public void shouldBeEqualWhenLastIndexOFItem () {
-        out.add( 10);
+    public void shouldBeEqualWhenLastIndexOFItem() {
+        out.add(10);
         out.add(20);
         assertEquals(0, out.lastIndexOF(10));
     }
 
     @Test
-    public void shouldBeEqualWhenGetIndex () {
+    public void shouldBeEqualWhenGetIndex() {
         out.add(10);
         out.add(20);
         assertEquals(20, out.get(1));
@@ -106,10 +107,11 @@ public class IntegerListTest {
     @Test
     public void shouldBeEqualsWhenIntegerListOtherList() {
         IntegerList another = new IntegerListImpl();
-        another.add( 10);
-        out.add( 10);
+        another.add(10);
+        out.add(10);
         assertTrue(another.equals(out));
     }
+
     @Test
     public void sizeTest() {
         out.add(10);
@@ -120,20 +122,22 @@ public class IntegerListTest {
     @Test
     public void shouldBeEqualWhenIsEmpty() {
         out.add(0, 10);
-        assertFalse( out.isEmpty());
+        assertFalse(out.isEmpty());
     }
+
     @Test
     public void shouldBeNullWhenClear() {
         out.add(0, 10);
         out.clear();
         assertEquals(0, out.size());
     }
+
     @Test
     public void shouldBeEqualWhenToArray() {
         List<Integer> list = new ArrayList<>();
-        list.add( 10);
+        list.add(10);
         list.toArray();
-        assertEquals(10 , list.get(0));
+        assertEquals(10, list.get(0));
     }
 }
 

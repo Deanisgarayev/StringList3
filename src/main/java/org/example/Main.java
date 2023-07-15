@@ -1,7 +1,7 @@
 package org.example;
 
 public class Main {
-//    private static final IntegerList integerList = new IntegerListImpl();
+    //    private static final IntegerList integerList = new IntegerListImpl();
     public static Integer[] generateRandomArray() {
         java.util.Random random = new java.util.Random();
         Integer[] arr = new Integer[100000];
@@ -10,11 +10,13 @@ public class Main {
         }
         return arr;
     }
+
     private static void swapElements(Integer[] arr, int indexA, int indexB) {
         int tmp = arr[indexA];
         arr[indexA] = arr[indexB];
         arr[indexB] = tmp;
     }
+
     public static void sortSelection(Integer[] arr) {
         for (int i = 0; i < arr.length - 1; i++) {
             int minElementIndex = i;
@@ -27,6 +29,7 @@ public class Main {
             swapElements(arr, i, minElementIndex);
         }
     }
+
     public static void sortInsertion(Integer[] arr) {
         for (int i = 1; i < arr.length; i++) {
             int temp = arr[i];
@@ -50,14 +53,14 @@ public class Main {
             }
         }
     }
+
     public static void main(String[] args) {
 
-            long start = System.currentTimeMillis();
+        long start = System.currentTimeMillis();
         Integer[] arr = generateRandomArray();
         sortSelection(arr);
+        long end = System.currentTimeMillis();
+        System.out.println(end - start);
 
-    long end = System.currentTimeMillis();
-            System.out.println(end - start);
-
-        }
     }
+}

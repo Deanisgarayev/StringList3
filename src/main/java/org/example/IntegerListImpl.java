@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.Arrays;
+
 @Service
 
 public class IntegerListImpl implements IntegerList {
@@ -149,11 +150,12 @@ public class IntegerListImpl implements IntegerList {
         return Arrays.copyOf(storage, size);
     }
 
-    private  void swapElements(Integer[] arr, int indexA, int indexB) {
+    private void swapElements(Integer[] arr, int indexA, int indexB) {
         int tmp = arr[indexA];
         arr[indexA] = arr[indexB];
         arr[indexB] = tmp;
     }
+
     private void sortSelection(Integer[] arr) {
 //  the fastest is sortSelection 2198 middle is sortInsertion  2770
 //  and the slowest is sortInsertion 7791
