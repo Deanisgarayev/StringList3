@@ -36,7 +36,7 @@ public class IntegerListImpl implements IntegerList {
     }
 
     public void validateIndex(int index) {
-        if (index < 0 || size > index) {
+        if (index < 0 || size < index ) {
             throw new InvalidIndexException();
         }
     }
@@ -72,7 +72,7 @@ public class IntegerListImpl implements IntegerList {
     }
 
     @Override
-    public Integer remove(Integer item) {
+    public Integer removeItem(Integer item) {
         validateItem(item);
         int index = indexOF(item);
 

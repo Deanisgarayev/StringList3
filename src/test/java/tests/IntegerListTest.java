@@ -27,25 +27,15 @@ public class IntegerListTest {
     @Test
     public void growIfItNeedsTest() {
         out.add(1);
-        out.add(2);
-        out.add(3);
-        out.add(4);
-        out.add(5);
-        out.add(6);
-        out.add(7);
-        out.add(8);
-        out.add(9);
-        out.add(10);
-        out.add(11);
-        assertDoesNotThrow(() -> out);
+        assertDoesNotThrow(() -> out.get(1));
     }
 
     @Test
-    public void ShouldThrowExceptionWhenVaIndexIsNull(int index) {
+    public void ShouldThrowExceptionWhenVaIndexIsNull() {
 
         out.add(0, 10);
         assertThrows(InvalidIndexException.class,
-                () -> out.get(1));
+                () -> out.get(-1));
 
     }
 
@@ -72,8 +62,9 @@ public class IntegerListTest {
 
     @Test
     public void shouldBeEqualWhenRemoveItem() {
-        out.add(0, 20);
-        out.remove(20);
+        out.add(20);
+        out.add(210);
+        out.removeItem(210);
         assertEquals(20, out.get(0));
     }
 

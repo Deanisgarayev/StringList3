@@ -8,7 +8,7 @@ public interface IntegerList {
 
     Integer set(int index, Integer item);
 
-    Integer remove(Integer item);
+    Integer removeItem(Integer item);
 
     Integer remove(int index);
 
