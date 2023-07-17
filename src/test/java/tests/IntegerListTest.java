@@ -5,8 +5,6 @@ import org.example.IntegerListImpl;
 import org.example.exceptions.InvalidIndexException;
 import org.example.exceptions.NullItemException;
 import org.example.exceptions.StorageIsFullException;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -27,10 +25,19 @@ public class IntegerListTest {
     }
 
     @Test
-    public void validateSizeTest() {
-
-        assertThrows(StorageIsFullException.class,
-                () -> out.add(1, 10));
+    public void growIfItNeedsTest() {
+        out.add(1);
+        out.add(2);
+        out.add(3);
+        out.add(4);
+        out.add(5);
+        out.add(6);
+        out.add(7);
+        out.add(8);
+        out.add(9);
+        out.add(10);
+        out.add(11);
+        assertDoesNotThrow(() -> out);
     }
 
     @Test

@@ -12,7 +12,7 @@ import java.util.Arrays;
 @Service
 
 public class IntegerListImpl implements IntegerList {
-    private final Integer[] storage;
+    private Integer[] storage;
     private int size;
 
     public IntegerListImpl() {
@@ -29,9 +29,9 @@ public class IntegerListImpl implements IntegerList {
         }
     }
 
-    public void validateSize() {
+    public void growIfItNeeds() {
         if (size == storage.length) {
-            throw new StorageIsFullException();
+            grow();
         }
     }
 
@@ -43,7 +43,7 @@ public class IntegerListImpl implements IntegerList {
 
     @Override
     public Integer add(Integer item) {
-        validateSize();
+        growIfItNeeds();
         validateItem(item);
         storage[size++] = item;
         return item;
@@ -51,7 +51,7 @@ public class IntegerListImpl implements IntegerList {
 
     @Override
     public Integer add(int index, Integer item) {
-        validateSize();
+        growIfItNeeds();
         validateItem(item);
         validateIndex(index);
         if (index == size) {
@@ -93,7 +93,7 @@ public class IntegerListImpl implements IntegerList {
     @Override
     public boolean contains(Integer item) {
         Integer[] storageCopy = toArray();
-        sortSelection(storageCopy);
+        sort(storageCopy);
         return binaryResearch(storageCopy, item);
     }
 
@@ -150,26 +150,39 @@ public class IntegerListImpl implements IntegerList {
         return Arrays.copyOf(storage, size);
     }
 
-    private void swapElements(Integer[] arr, int indexA, int indexB) {
+    private  void swapElements(Integer[] arr, int indexA, int indexB) {
         int tmp = arr[indexA];
         arr[indexA] = arr[indexB];
         arr[indexB] = tmp;
     }
 
-    private void sortSelection(Integer[] arr) {
-//  the fastest is sortSelection 2198 middle is sortInsertion  2770
-//  and the slowest is sortInsertion 7791
-        for (int i = 0; i < arr.length - 1; i++) {
-            int minElementIndex = i;
-            for (int j = i + 1; j < arr.length; j++) {
-                if (arr[j] < arr[minElementIndex]) {
-                    minElementIndex = j;
-                }
-            }
-            swapElements(arr, i, minElementIndex);
+    private void sort(Integer[] arr) {
+        quickSort(arr,0,arr.length-1);
+    }
+    public void quickSort(Integer[] arr, int begin, int end) {
+        if (begin < end) {
+            int partitionIndex = partition(arr, begin, end);
+
+            quickSort(arr, begin, partitionIndex - 1);
+            quickSort(arr, partitionIndex + 1, end);
         }
     }
 
+    private  int partition(Integer[] arr, int begin, int end) {
+        Integer pivot = arr[end];
+        int i = (begin - 1);
+
+        for (int j = begin; j < end; j++) {
+            if (arr[j] <= pivot) {
+                i++;
+
+                swapElements(arr, i, j);
+            }
+        }
+
+        swapElements(arr, i + 1, end);
+        return i + 1;
+    }
     private boolean binaryResearch(Integer[] arr, Integer item) {
         int min = 0;
         int max = arr.length - 1;
@@ -188,5 +201,9 @@ public class IntegerListImpl implements IntegerList {
             }
         }
         return false;
+    }
+
+    private void grow() {
+        storage = Arrays.copyOf(storage,size + size / 2);
     }
 }

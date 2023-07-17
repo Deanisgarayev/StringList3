@@ -1,7 +1,7 @@
 package org.example;
 
 public class Main {
-    //    private static final IntegerList integerList = new IntegerListImpl();
+
     public static Integer[] generateRandomArray() {
         java.util.Random random = new java.util.Random();
         Integer[] arr = new Integer[100000];
