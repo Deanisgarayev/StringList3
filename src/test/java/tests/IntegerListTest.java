@@ -132,10 +132,9 @@ public class IntegerListTest {
 
     @Test
     public void shouldBeEqualWhenToArray() {
-        List<Integer> list = new ArrayList<>();
-        list.add(10);
-        list.toArray();
-        assertEquals(10, list.get(0));
+        Integer[] arr = {out.add(1)};
+        Integer[] result = out.toArray();
+        assertArrayEquals(arr, result);
     }
 }
 
